@@ -37,7 +37,34 @@ bot.on('message', function (event) {
         axios(config)
         .then(function (response) {
             console.log(JSON.stringify(response.data));
-            event.reply(`${response.data.results.coupon.object_info.title}:${response.data.results.coupon.object_info.image.url}`);
+            event.reply({
+                "type": "flex",
+                "altText": "Flex Message",
+                "contents": {
+                  "type": "bubble",
+                  "hero": {
+                    "type": "image",
+                    "url": "https://mcdapp1.azureedge.net/ccrotbJmNrxfvvc7iYXZ.jpg",
+                    "size": "full",
+                    "aspectRatio": "3:4",
+                    "aspectMode": "cover"
+                  },
+                  "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
+                        "flex": 5,
+                        "size": "sm",
+                        "color": "#666666",
+                        "wrap": true
+                      }
+                    ]
+                  }
+                }
+              });
             console.log(response.data.results.coupon.object_info.image.url)
         })
         .catch(function (error) {
