@@ -17,18 +17,25 @@ let bot = linebot({
     channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN
 });
 
-// 當有人傳送訊息給 Bot 時
-bot.on('message', function (event) {
-    // 回覆訊息給使用者 (一問一答所以是回覆不是推送)
-    event.reply(`你說了 ${event.message.text}`);
-
+function lottery(){
     axios(config)
         .then(function (response) {
             console.log(JSON.stringify(response.data));
+            console.log(response.data.results.coupon.object_info.image.url)
         })
         .catch(function (error) {
             console.log(error);
         });
+}
+
+// 當有人傳送訊息給 Bot 時
+bot.on('message', function (event) {
+    // 回覆訊息給使用者 (一問一答所以是回覆不是推送)
+    event.reply(`你說了 ${event.message.text}`);
+    if(event.message.text == '我要抽麥當當'){
+        console.log('開始抽籤')
+        lottery()
+    }
 
 });
 
