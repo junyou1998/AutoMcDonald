@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/junyou1998/AutoMcDonald/issues"
   },
-  "homepage": "https://github.com/junyou1998/AutoMcDonald#readme"
+  "homepage": "https://github.com/junyou1998/AutoMcDonald#readme",
+  "dependencies": {
+    "linebot": "^1.6.0"
+  }
 }
