@@ -1,0 +1,19 @@
+{
+  "name": "automcdonald",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/junyou1998/AutoMcDonald.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/junyou1998/AutoMcDonald/issues"
+  },
+  "homepage": "https://github.com/junyou1998/AutoMcDonald#readme"
+}
