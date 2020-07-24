@@ -40,13 +40,14 @@ bot.on('message', function (event) {
         axios(config)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
+                let img,title;
                 if('coupon' in response.data.results){
-                    let img = response.data.results.coupon.object_info.image.url;
-                    let title = response.data.results.coupon.object_info.title;
+                    img = response.data.results.coupon.object_info.image.url;
+                    title = response.data.results.coupon.object_info.title;
                 }
                 else{
-                    let img = response.data.results.sticker.object_info.image.url;
-                    let title = response.data.results.sticker.object_info.title;
+                    img = response.data.results.sticker.object_info.image.url;
+                    title = response.data.results.sticker.object_info.title;
                 }
                 event.reply({
                     "type": "flex",
@@ -86,13 +87,14 @@ bot.on('message', function (event) {
         axios(config1)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
+                let img,title;
                 if('coupon' in response.data.results){
-                    let img = response.data.results.coupon.object_info.image.url;
-                    let title = response.data.results.coupon.object_info.title;
+                    img = response.data.results.coupon.object_info.image.url;
+                    title = response.data.results.coupon.object_info.title;
                 }
                 else{
-                    let img = response.data.results.sticker.object_info.image.url;
-                    let title = response.data.results.sticker.object_info.title;
+                    img = response.data.results.sticker.object_info.image.url;
+                    title = response.data.results.sticker.object_info.title;
                 }
                 event.reply({
                     "type": "flex",
@@ -132,14 +134,14 @@ bot.on('message', function (event) {
         axios(config2)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
-                
+                let img,title;
                 if('coupon' in response.data.results){
-                    let img = response.data.results.coupon.object_info.image.url;
-                    let title = response.data.results.coupon.object_info.title;
+                    img = response.data.results.coupon.object_info.image.url;
+                    title = response.data.results.coupon.object_info.title;
                 }
                 else{
-                    let img = response.data.results.sticker.object_info.image.url;
-                    let title = response.data.results.sticker.object_info.title;
+                    img = response.data.results.sticker.object_info.image.url;
+                    title = response.data.results.sticker.object_info.title;
                 }
                 event.reply({
                     "type": "flex",
