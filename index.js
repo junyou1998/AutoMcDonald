@@ -4,10 +4,17 @@ const axios = require('axios');
 
 var data = '{"access_token":"LYoAenEAsdAIiBGB","source_info":{"app_version":"2.2.6","device_time":"2020/07/24 14:23:02","device_uuid":"29a19074f5983175","model_id":"Redmi Note 4","os_version":"6.0","platform":"Android"}}';
 
+var data1 = '{"access_token":"IKfDvAAoNQAUAAC7","offset":0,"source_info":{"app_version":"2.2.6","device_time":"2020/07/24 22:06:24","device_uuid":"29a19074f5983175","model_id":"Redmi Note 4","os_version":"6.0","platform":"Android"}}'
+
 var config = {
     method: 'post',
     url: 'https://api1.mcddailyapp.com/lottery/get_item',
     data: data
+};
+var config1 = {
+    method: 'post',
+    url: 'https://api1.mcddailyapp.com/lottery/get_item',
+    data: data1
 };
 
 // 初始化 line bot 需要的資訊，在 Heroku 上的設定的 Config Vars，可參考 Step2
@@ -17,24 +24,55 @@ let bot = linebot({
     channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN
 });
 
-function lottery() {
-    axios(config)
-        .then(function (response) {
-            console.log(JSON.stringify(response.data));
-            console.log(response.data.results.coupon.object_info.image.url)
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-}
+
 
 // 當有人傳送訊息給 Bot 時
 bot.on('message', function (event) {
     // 回覆訊息給使用者 (一問一答所以是回覆不是推送)
     // event.reply(`${event.message.text}`);
-    if (event.message.text == '我要抽麥當當') {
-        console.log('開始抽籤')
+    if (event.message.text == '佑佑要抽麥當當') {
+        console.log('開始抽籤(佑)')
         axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+                let img = response.data.results.coupon.object_info.image.url;
+                let title = response.data.results.coupon.object_info.title;
+                event.reply({
+                    "type": "flex",
+                    "altText": "Flex Message",
+                    "contents": {
+                        "type": "bubble",
+                        "hero": {
+                            "type": "image",
+                            "url": img,
+                            "size": "full",
+                            "aspectRatio": "3:4",
+                            "aspectMode": "cover"
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [{
+                                "type": "text",
+                                "text": title,
+                                "flex": 5,
+                                "size": "sm",
+                                "color": "#666666",
+                                "wrap": true
+                            }]
+                        }
+                    }
+                });
+
+                console.log(response.data.results.coupon.object_info.image.url)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    else if (event.message.text == '安安要抽麥當當') {
+        console.log('開始抽籤(安)')
+        axios(config1)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
                 let img = response.data.results.coupon.object_info.image.url;
