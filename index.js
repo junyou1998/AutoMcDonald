@@ -31,14 +31,13 @@ function lottery(){
 // 當有人傳送訊息給 Bot 時
 bot.on('message', function (event) {
     // 回覆訊息給使用者 (一問一答所以是回覆不是推送)
-    event.reply(`${event.message.text}`);
+    // event.reply(`${event.message.text}`);
     if(event.message.text == '我要抽麥當當'){
         console.log('開始抽籤')
         axios(config)
         .then(function (response) {
             console.log(JSON.stringify(response.data));
-            event.reply(`${response.data.results.coupon.object_info.title}`);
-            event.reply(`${response.data.results.coupon.object_info.image.url}`);
+            event.reply(`${response.data.results.coupon.object_info.title}:${response.data.results.coupon.object_info.image.url}`);
             console.log(response.data.results.coupon.object_info.image.url)
         })
         .catch(function (error) {
