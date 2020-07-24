@@ -17,7 +17,7 @@ let bot = linebot({
     channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN
 });
 
-function lottery(){
+function lottery() {
     axios(config)
         .then(function (response) {
             console.log(JSON.stringify(response.data));
@@ -32,44 +32,45 @@ function lottery(){
 bot.on('message', function (event) {
     // 回覆訊息給使用者 (一問一答所以是回覆不是推送)
     // event.reply(`${event.message.text}`);
-    if(event.message.text == '我要抽麥當當'){
+    if (event.message.text == '我要抽麥當當') {
         console.log('開始抽籤')
         axios(config)
-        .then(function (response) {
-            console.log(JSON.stringify(response.data));
-            event.reply({
-                "type": "flex",
-                "altText": "Flex Message",
-                "contents": {
-                  "type": "bubble",
-                  "hero": {
-                    "type": "image",
-                    "url": "https://mcdapp1.azureedge.net/ccrotbJmNrxfvvc7iYXZ.jpg",
-                    "size": "full",
-                    "aspectRatio": "3:4",
-                    "aspectMode": "cover"
-                  },
-                  "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
-                        "flex": 5,
-                        "size": "sm",
-                        "color": "#666666",
-                        "wrap": true
-                      }
-                    ]
-                  }
-                }
-              });
-            console.log(response.data.results.coupon.object_info.image.url)
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+                let img = response.data.results.coupon.object_info.image.url;
+                let title = response.data.results.coupon.object_info.title;
+                event.reply({
+                    "type": "flex",
+                    "altText": "Flex Message",
+                    "contents": {
+                        "type": "bubble",
+                        "hero": {
+                            "type": "image",
+                            "url": img,
+                            "size": "full",
+                            "aspectRatio": "3:4",
+                            "aspectMode": "cover"
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [{
+                                "type": "text",
+                                "text": title,
+                                "flex": 5,
+                                "size": "sm",
+                                "color": "#666666",
+                                "wrap": true
+                            }]
+                        }
+                    }
+                });
+
+                console.log(response.data.results.coupon.object_info.image.url)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
 });
