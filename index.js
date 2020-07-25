@@ -7,6 +7,8 @@ var data1 = '{"access_token":"IKfDvAAoNQAUAAC7","offset":0,"source_info":{"app_v
 var data2 = '{"access_token":"vjyhqFIfDOj5tgAA","source_info":{"app_version":"2.2.6","device_time":"2020/07/24 22:33:18","device_uuid":"29a19074f5983177","model_id":"Mi 8 lite","os_version":"10.0","platform":"Android"}}'
 var data3 = '{"access_token":"+fz54AYAN+fFAO8A","source_info":{"app_version":"2.2.6","device_time":"2020/07/24 13:25:02","device_uuid":"29a19074f5983176","model_id":"Redmi Note 8","os_version":"10.0","platform":"Android"}}'
 var data4 = '{"access_token":"1QCR97jjoDDgAH4A","source_info":{"app_version":"2.2.6","device_time":"2020/07/24 13:25:02","device_uuid":"29a19074f5983276","model_id":"Redmi Note 8","os_version":"10.0","platform":"Android"}}'
+var data5 = '{"access_token":"AFgBAebY7wCg4J7r","source_info":{"app_version":"2.2.6","device_time":"2020/07/24 13:25:02","device_uuid":"29a19074f5983276","model_id":"Zenfone 2 Laser","os_version":"6.0","platform":"Android"}}'
+
 
 var config = {
     method: 'post',
@@ -32,6 +34,11 @@ var config4 = {
     method: 'post',
     url: 'https://api1.mcddailyapp.com/lottery/get_item',
     data: data4
+};
+var config5 = {
+    method: 'post',
+    url: 'https://api1.mcddailyapp.com/lottery/get_item',
+    data: data5
 };
 
 // 初始化 line bot 需要的資訊，在 Heroku 上的設定的 Config Vars，可參考 Step2
@@ -238,6 +245,53 @@ bot.on('message', function (event) {
     else if (event.message.text == '佑佑(2)要抽麥當當') {
         console.log('開始抽籤(佑2)')
         axios(config4)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+                let img,title;
+                if('coupon' in response.data.results){
+                    img = response.data.results.coupon.object_info.image.url;
+                    title = response.data.results.coupon.object_info.title;
+                }
+                else{
+                    img = response.data.results.sticker.object_info.image.url;
+                    title = response.data.results.sticker.object_info.title;
+                }
+                event.reply({
+                    "type": "flex",
+                    "altText": "Flex Message",
+                    "contents": {
+                        "type": "bubble",
+                        "hero": {
+                            "type": "image",
+                            "url": img,
+                            "size": "full",
+                            "aspectRatio": "3:4",
+                            "aspectMode": "cover"
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [{
+                                "type": "text",
+                                "text": title,
+                                "flex": 5,
+                                "size": "sm",
+                                "color": "#666666",
+                                "wrap": true
+                            }]
+                        }
+                    }
+                });
+
+                
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    else if (event.message.text == '梅梅(2)要抽麥當當') {
+        console.log('開始抽籤(梅2)')
+        axios(config5)
             .then(function (response) {
                 console.log(JSON.stringify(response.data));
                 let img,title;
