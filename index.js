@@ -48,7 +48,36 @@ let bot = linebot({
     channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN
 });
 
+function reply(img,title){
+    let msg = {
+        "type": "flex",
+        "altText": "Flex Message",
+        "contents": {
+            "type": "bubble",
+            "hero": {
+                "type": "image",
+                "url": img,
+                "size": "full",
+                "aspectRatio": "3:4",
+                "aspectMode": "cover"
+            },
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [{
+                    "type": "text",
+                    "text": title,
+                    "flex": 5,
+                    "size": "sm",
+                    "color": "#666666",
+                    "wrap": true
+                }]
+            }
+        }
+    }
 
+    return msg;
+}
 
 // 當有人傳送訊息給 Bot 時
 bot.on('message', function (event) {
@@ -68,32 +97,7 @@ bot.on('message', function (event) {
                     img = response.data.results.sticker.object_info.image.url;
                     title = response.data.results.sticker.object_info.title;
                 }
-                event.reply({
-                    "type": "flex",
-                    "altText": "Flex Message",
-                    "contents": {
-                        "type": "bubble",
-                        "hero": {
-                            "type": "image",
-                            "url": img,
-                            "size": "full",
-                            "aspectRatio": "3:4",
-                            "aspectMode": "cover"
-                        },
-                        "body": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [{
-                                "type": "text",
-                                "text": title,
-                                "flex": 5,
-                                "size": "sm",
-                                "color": "#666666",
-                                "wrap": true
-                            }]
-                        }
-                    }
-                });
+                event.reply(reply(img,title));
 
                 
             })
