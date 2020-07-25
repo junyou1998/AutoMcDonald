@@ -119,32 +119,7 @@ bot.on('message', function (event) {
                     img = response.data.results.sticker.object_info.image.url;
                     title = response.data.results.sticker.object_info.title;
                 }
-                event.reply({
-                    "type": "flex",
-                    "altText": "Flex Message",
-                    "contents": {
-                        "type": "bubble",
-                        "hero": {
-                            "type": "image",
-                            "url": img,
-                            "size": "full",
-                            "aspectRatio": "3:4",
-                            "aspectMode": "cover"
-                        },
-                        "body": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [{
-                                "type": "text",
-                                "text": title,
-                                "flex": 5,
-                                "size": "sm",
-                                "color": "#666666",
-                                "wrap": true
-                            }]
-                        }
-                    }
-                });
+                event.reply(reply(img,title));
 
                 
             })
@@ -166,32 +141,7 @@ bot.on('message', function (event) {
                     img = response.data.results.sticker.object_info.image.url;
                     title = response.data.results.sticker.object_info.title;
                 }
-                event.reply({
-                    "type": "flex",
-                    "altText": "Flex Message",
-                    "contents": {
-                        "type": "bubble",
-                        "hero": {
-                            "type": "image",
-                            "url": img,
-                            "size": "full",
-                            "aspectRatio": "3:4",
-                            "aspectMode": "cover"
-                        },
-                        "body": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [{
-                                "type": "text",
-                                "text": title,
-                                "flex": 5,
-                                "size": "sm",
-                                "color": "#666666",
-                                "wrap": true
-                            }]
-                        }
-                    }
-                });
+                event.reply(reply(img,title));
 
                 
             })
@@ -213,33 +163,7 @@ bot.on('message', function (event) {
                     img = response.data.results.sticker.object_info.image.url;
                     title = response.data.results.sticker.object_info.title;
                 }
-                event.reply({
-                    "type": "flex",
-                    "altText": "Flex Message",
-                    "contents": {
-                        "type": "bubble",
-                        "hero": {
-                            "type": "image",
-                            "url": img,
-                            "size": "full",
-                            "aspectRatio": "3:4",
-                            "aspectMode": "cover"
-                        },
-                        "body": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [{
-                                "type": "text",
-                                "text": title,
-                                "flex": 5,
-                                "size": "sm",
-                                "color": "#666666",
-                                "wrap": true
-                            }]
-                        }
-                    }
-                });
-
+                event.reply(reply(img,title));
                 
             })
             .catch(function (error) {
@@ -260,33 +184,7 @@ bot.on('message', function (event) {
                     img = response.data.results.sticker.object_info.image.url;
                     title = response.data.results.sticker.object_info.title;
                 }
-                event.reply({
-                    "type": "flex",
-                    "altText": "Flex Message",
-                    "contents": {
-                        "type": "bubble",
-                        "hero": {
-                            "type": "image",
-                            "url": img,
-                            "size": "full",
-                            "aspectRatio": "3:4",
-                            "aspectMode": "cover"
-                        },
-                        "body": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [{
-                                "type": "text",
-                                "text": title,
-                                "flex": 5,
-                                "size": "sm",
-                                "color": "#666666",
-                                "wrap": true
-                            }]
-                        }
-                    }
-                });
-
+                event.reply(reply(img,title));
                 
             })
             .catch(function (error) {
@@ -307,33 +205,7 @@ bot.on('message', function (event) {
                     img = response.data.results.sticker.object_info.image.url;
                     title = response.data.results.sticker.object_info.title;
                 }
-                event.reply({
-                    "type": "flex",
-                    "altText": "Flex Message",
-                    "contents": {
-                        "type": "bubble",
-                        "hero": {
-                            "type": "image",
-                            "url": img,
-                            "size": "full",
-                            "aspectRatio": "3:4",
-                            "aspectMode": "cover"
-                        },
-                        "body": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [{
-                                "type": "text",
-                                "text": title,
-                                "flex": 5,
-                                "size": "sm",
-                                "color": "#666666",
-                                "wrap": true
-                            }]
-                        }
-                    }
-                });
-
+                event.reply(reply(img,title));
                 
             })
             .catch(function (error) {
