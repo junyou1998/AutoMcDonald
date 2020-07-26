@@ -79,31 +79,35 @@ function reply(img,title){
     return msg;
 }
 
+async function lottery(config){
+    let draw = await axios(config)
+    let data = draw.data
+    return data
+}
+
+
+
 // 當有人傳送訊息給 Bot 時
 bot.on('message', function (event) {
     // 回覆訊息給使用者 (一問一答所以是回覆不是推送)
     // event.reply(`${event.message.text}`);
     if (event.message.text == '佑佑要抽麥當當') {
         console.log('開始抽籤(佑)')
-        axios(config)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-                let img,title;
-                if('coupon' in response.data.results){
-                    img = response.data.results.coupon.object_info.image.url;
-                    title = response.data.results.coupon.object_info.title;
-                }
-                else{
-                    img = response.data.results.sticker.object_info.image.url;
-                    title = response.data.results.sticker.object_info.title;
-                }
-                event.reply(reply(img,title));
 
-                
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        lottery(config).then(function(res){
+            console.log(JSON.stringify(res))
+            let img,title;
+            if('coupon' in res.results){
+                img = res.results.coupon.object_info.image.url;
+                title = res.results.coupon.object_info.title;
+            }
+            else{
+                img = res.results.sticker.object_info.image.url;
+                title = res.results.sticker.object_info.title;
+            }
+            event.reply(reply(img,title));
+        })
+
     }
     else if (event.message.text == '安安要抽麥當當') {
         console.log('開始抽籤(安)')
