@@ -85,6 +85,27 @@ async function lottery(config){
     return data
 }
 
+function getlottery(config){
+    return axiox(config).then(res=>{
+        let data = res.data
+        let img,title
+
+        if('coupon' in data.results){
+            img = data.results.coupon.object_info.image.url;
+            title = data.results.coupon.object_info.title;
+        }
+        else{
+            img = data.results.sticker.object_info.image.url;
+            title = data.results.sticker.object_info.title;
+        }
+
+        return {
+            data:data,
+            title: title,
+            img: img
+        }
+    })
+}
 
 
 // 當有人傳送訊息給 Bot 時
@@ -94,20 +115,10 @@ bot.on('message', function (event) {
     if (event.message.text == '佑佑要抽麥當當') {
         console.log('開始抽籤(佑)')
 
-        lottery(config).then(function(res){
-            console.log(JSON.stringify(res))
-            let img,title;
-            if('coupon' in res.results){
-                img = res.results.coupon.object_info.image.url;
-                title = res.results.coupon.object_info.title;
-            }
-            else{
-                img = res.results.sticker.object_info.image.url;
-                title = res.results.sticker.object_info.title;
-            }
-            event.reply(reply(img,title));
-        })
-
+        ~async function(){
+            let data = await getlottery(config)
+            event.reply(reply(data.img,data.title))
+        }
     }
     else if (event.message.text == '安安要抽麥當當') {
         console.log('開始抽籤(安)')
