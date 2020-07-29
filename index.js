@@ -123,110 +123,48 @@ bot.on('message', function (event) {
     }
     else if (event.message.text == '安安要抽麥當當') {
         console.log('開始抽籤(安)')
-        axios(config1)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-                let img,title;
-                if('coupon' in response.data.results){
-                    img = response.data.results.coupon.object_info.image.url;
-                    title = response.data.results.coupon.object_info.title;
-                }
-                else{
-                    img = response.data.results.sticker.object_info.image.url;
-                    title = response.data.results.sticker.object_info.title;
-                }
-                event.reply(reply(img,title));
-
-                
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        
+        ~async function(){
+            let data = await getlottery(config1)
+            event.reply(reply(data.img,data.title))
+            console.log(data)
+        }()
     }
     else if (event.message.text == '亮亮要抽麥當當') {
         console.log('開始抽籤(亮)')
-        axios(config2)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-                let img,title;
-                if('coupon' in response.data.results){
-                    img = response.data.results.coupon.object_info.image.url;
-                    title = response.data.results.coupon.object_info.title;
-                }
-                else{
-                    img = response.data.results.sticker.object_info.image.url;
-                    title = response.data.results.sticker.object_info.title;
-                }
-                event.reply(reply(img,title));
 
-                
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        ~async function(){
+            let data = await getlottery(config2)
+            event.reply(reply(data.img,data.title))
+            console.log(data)
+        }()
     }
     else if (event.message.text == '梅梅要抽麥當當') {
         console.log('開始抽籤(梅)')
-        axios(config3)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-                let img,title;
-                if('coupon' in response.data.results){
-                    img = response.data.results.coupon.object_info.image.url;
-                    title = response.data.results.coupon.object_info.title;
-                }
-                else{
-                    img = response.data.results.sticker.object_info.image.url;
-                    title = response.data.results.sticker.object_info.title;
-                }
-                event.reply(reply(img,title));
-                
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        
+        ~async function(){
+            let data = await getlottery(config3)
+            event.reply(reply(data.img,data.title))
+            console.log(data)
+        }()
     }
     else if (event.message.text == '佑佑(2)要抽麥當當') {
         console.log('開始抽籤(佑2)')
-        axios(config4)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-                let img,title;
-                if('coupon' in response.data.results){
-                    img = response.data.results.coupon.object_info.image.url;
-                    title = response.data.results.coupon.object_info.title;
-                }
-                else{
-                    img = response.data.results.sticker.object_info.image.url;
-                    title = response.data.results.sticker.object_info.title;
-                }
-                event.reply(reply(img,title));
-                
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        
+        ~async function(){
+            let data = await getlottery(config4)
+            event.reply(reply(data.img,data.title))
+            console.log(data)
+        }()
     }
     else if (event.message.text == '梅梅(2)要抽麥當當') {
         console.log('開始抽籤(梅2)')
-        axios(config5)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-                let img,title;
-                if('coupon' in response.data.results){
-                    img = response.data.results.coupon.object_info.image.url;
-                    title = response.data.results.coupon.object_info.title;
-                }
-                else{
-                    img = response.data.results.sticker.object_info.image.url;
-                    title = response.data.results.sticker.object_info.title;
-                }
-                event.reply(reply(img,title));
-                
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        
+        ~async function(){
+            let data = await getlottery(config5)
+            event.reply(reply(data.img,data.title))
+            console.log(data)
+        }()
     }
 
 });
