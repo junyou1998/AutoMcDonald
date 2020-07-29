@@ -86,7 +86,7 @@ async function lottery(config){
 }
 
 function getlottery(config){
-    return axiox(config).then(res=>{
+    return axios(config).then(res=>{
         let data = res.data
         let img,title
 
@@ -117,7 +117,7 @@ bot.on('message', function (event) {
 
         ~async function(){
             let data = await getlottery(config)
-            // event.reply(reply(data.img,data.title))
+            event.reply(reply(data.img,data.title))
             console.log(data)
         }()
     }
