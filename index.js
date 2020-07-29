@@ -119,7 +119,7 @@ bot.on('message', function (event) {
             let data = await getlottery(config)
             // event.reply(reply(data.img,data.title))
             console.log(data)
-        }
+        }()
     }
     else if (event.message.text == '安安要抽麥當當') {
         console.log('開始抽籤(安)')
