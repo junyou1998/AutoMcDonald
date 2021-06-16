@@ -88,6 +88,7 @@ async function lottery(config){
 
 function getlottery(config){
     return axios(config).then(res=>{
+        console.log(res.data)
         let data = res.data
         let img,title
 
