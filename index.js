@@ -2,44 +2,12 @@
 let linebot = require('linebot');
 const axios = require('axios');
 
-// var data = '{"access_token":"LYoAenEAsdAIiBGB","source_info":{"app_version":"2.2.6","device_time":"2020/07/24 14:23:02","device_uuid":"29a19074f5983175","model_id":"Redmi Note 4","os_version":"6.0","platform":"Android"}}';
-var data1 = '{"access_token":"IKfDvAAoNQAUAAC7","offset":0,"source_info":{"app_version":"2.2.6","device_time":"2020/07/24 22:06:24","device_uuid":"29a19074f5983176","model_id":"Mi 8 lite","os_version":"9.0","platform":"Android"}}'
-var data2 = '{"access_token":"vjyhqFIfDOj5tgAA","source_info":{"app_version":"2.2.6","device_time":"2020/07/24 22:33:18","device_uuid":"29a19074f5983177","model_id":"Mi 8 lite","os_version":"10.0","platform":"Android"}}'
-var data3 = '{"access_token":"+fz54AYAN+fFAO8A","source_info":{"app_version":"2.2.6","device_time":"2020/07/24 13:25:02","device_uuid":"29a19074f5983176","model_id":"Redmi Note 8","os_version":"10.0","platform":"Android"}}'
-var data4 = '{"access_token":"1QCR97jjoDDgAH4A","source_info":{"app_version":"2.2.6","device_time":"2020/07/24 13:25:02","device_uuid":"29a19074f5983276","model_id":"Redmi Note 8","os_version":"10.0","platform":"Android"}}'
-var data5 = '{"access_token":"AFgBAebY7wCg4J7r","source_info":{"app_version":"2.2.6","device_time":"2020/07/24 13:25:02","device_uuid":"29a19074f5983276","model_id":"Zenfone 2 Laser","os_version":"6.0","platform":"Android"}}'
-
 var data = '{"access_token": "AEnkFAIAmbojuS51","source_info":{"app_version": "2.3.1","device_time":"2021/06/16 16:45:04","device_uuid":"acf0e6a16256e492","model_id": "Redmi Note 4","os_version": "6.0","platform": "Android"}}'
 
 var config = {
     method: 'post',
     url: 'https://api1.mcddailyapp.com/lottery/get_item',
     data: data
-};
-var config1 = {
-    method: 'post',
-    url: 'https://api1.mcddailyapp.com/lottery/get_item',
-    data: data1
-};
-var config2 = {
-    method: 'post',
-    url: 'https://api1.mcddailyapp.com/lottery/get_item',
-    data: data2
-};
-var config3 = {
-    method: 'post',
-    url: 'https://api1.mcddailyapp.com/lottery/get_item',
-    data: data3
-};
-var config4 = {
-    method: 'post',
-    url: 'https://api1.mcddailyapp.com/lottery/get_item',
-    data: data4
-};
-var config5 = {
-    method: 'post',
-    url: 'https://api1.mcddailyapp.com/lottery/get_item',
-    data: data5
 };
 
 // 初始化 line bot 需要的資訊，在 Heroku 上的設定的 Config Vars，可參考 Step2
@@ -123,51 +91,6 @@ bot.on('message', function (event) {
             console.log(data)
         }()
     }
-    else if (event.message.text == '安安要抽麥當當') {
-        console.log('開始抽籤(安)')
-        
-        ~async function(){
-            let data = await getlottery(config1)
-            event.reply(reply(data.img,data.title))
-            console.log(data)
-        }()
-    }
-    else if (event.message.text == '亮亮要抽麥當當') {
-        console.log('開始抽籤(亮)')
-
-        ~async function(){
-            let data = await getlottery(config2)
-            event.reply(reply(data.img,data.title))
-            console.log(data)
-        }()
-    }
-    else if (event.message.text == '梅梅要抽麥當當') {
-        console.log('開始抽籤(梅)')
-        
-        ~async function(){
-            let data = await getlottery(config3)
-            event.reply(reply(data.img,data.title))
-            console.log(data)
-        }()
-    }
-    else if (event.message.text == '佑佑(2)要抽麥當當') {
-        console.log('開始抽籤(佑2)')
-        
-        ~async function(){
-            let data = await getlottery(config4)
-            event.reply(reply(data.img,data.title))
-            console.log(data)
-        }()
-    }
-    else if (event.message.text == '梅梅(2)要抽麥當當') {
-        console.log('開始抽籤(梅2)')
-        
-        ~async function(){
-            let data = await getlottery(config5)
-            event.reply(reply(data.img,data.title))
-            console.log(data)
-        }()
-    }
 
 });
 
@@ -175,6 +98,3 @@ bot.on('message', function (event) {
 bot.listen('/', process.env.PORT || 5000, function () {
     console.log('測試LINEBOT是否運作！！');
 });
-fetch('https://jsonplaceholder.typicode.com/todos/1')
-  .then(response => response.json())
-  .then(json => console.log(json))
