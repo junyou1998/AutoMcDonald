@@ -55,27 +55,26 @@ async function lottery(config){
 }
 
 function getlottery(config){
-    // return axios(config).then(res=>{
-    //     console.log(res.data)
-    //     let data = res.data
-    //     let img,title
+    return axios(config).then(res=>{
+        console.log(res.data)
+        let data = res.data
+        let img,title
 
-    //     if('coupon' in data.results){
-    //         img = data.results.coupon.object_info.image.url;
-    //         title = data.results.coupon.object_info.title;
-    //     }
-    //     else{
-    //         img = data.results.sticker.object_info.image.url;
-    //         title = data.results.sticker.object_info.title;
-    //     }
+        if('coupon' in data.results){
+            img = data.results.coupon.object_info.image.url;
+            title = data.results.coupon.object_info.title;
+        }
+        else{
+            img = data.results.sticker.object_info.image.url;
+            title = data.results.sticker.object_info.title;
+        }
 
-    //     return {
-    //         data:data,
-    //         title: title,
-    //         img: img
-    //     }
-    // })
-    console.log('gogo')
+        return {
+            data:data,
+            title: title,
+            img: img
+        }
+    })
 }
 
 
@@ -88,7 +87,7 @@ bot.on('message', function (event) {
 
         ~async function(){
             let data = await getlottery(config)
-            // event.reply(reply(data.img,data.title))
+            event.reply(reply(data.img,data.title))
             console.log(data)
         }()
     }
