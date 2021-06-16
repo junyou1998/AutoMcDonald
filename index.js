@@ -175,3 +175,6 @@ bot.on('message', function (event) {
 bot.listen('/', process.env.PORT || 5000, function () {
     console.log('測試LINEBOT是否運作！！');
 });
+fetch('https://jsonplaceholder.typicode.com/todos/1')
+  .then(response => response.json())
+  .then(json => console.log(json))
