@@ -18,6 +18,6 @@
   "homepage": "https://github.com/junyou1998/AutoMcDonald#readme",
   "dependencies": {
     "axios": "^0.19.2",
-    "linebot": "^1.6.0"
+    "linebot": "^1.6.1"
   }
 }
