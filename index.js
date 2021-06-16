@@ -87,7 +87,7 @@ bot.on('message', function (event) {
 
         ~async function(){
             let data = await getlottery(config)
-            event.reply(reply(data.img,data.title))
+            // event.reply(reply(data.img,data.title))
             console.log(data)
         }()
     }
